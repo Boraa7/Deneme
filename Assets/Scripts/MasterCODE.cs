@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MasterCODE : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class MasterCODE : MonoBehaviour
     Vector3 midup = new Vector3(0, 4, 100);
     Vector3 rightup = new Vector3(4, 4, 100);
     Vector3 leftup = new Vector3(-4, 4, 100);
+    
+
 
 
 
@@ -30,14 +33,21 @@ public class MasterCODE : MonoBehaviour
 
 
     public bool spawn, _Armored, _coinpower;
-    public float _CoinCount = 0;
-    public float _DiaCount = 0;
+    public float _CoinCount = 0f;
+    public float _DiaCount = 0f;
+    public float _ScoreCount = 0;
     public float acceleration = 10f;
     public float _Speedy = 15.0f;
     float blockspawncontroller = 20f;
 
     float zaman,zaman1 =0f;
     float Respawner;
+    [SerializeField]
+    private Text CoinCount;
+    [SerializeField]
+    private Text DiaCOunt;
+    [SerializeField]
+    private Text ScoreCount;
 
     void Awake() => Instance = this;
    
@@ -46,10 +56,12 @@ public class MasterCODE : MonoBehaviour
 
     void Start()
     {
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 180;
         blockcount = blocks.Length;
         bgroundcount = background.Length;
-
+        CoinCount.text = _CoinCount.ToString();
+        DiaCOunt.text = _DiaCount.ToString();
+        ScoreCount.text = _ScoreCount.ToString();
     }
 
 
@@ -62,6 +74,8 @@ public class MasterCODE : MonoBehaviour
         {
             Spawn();
             zaman = 0;
+            ScoreUpdate();
+            
         }
         if (zaman1>Respawner*4)
         {
@@ -85,13 +99,12 @@ public class MasterCODE : MonoBehaviour
     {
        
         _CoinCount += 1;
-        Debug.Log(_CoinCount);
-
+        CoinCount.text = _CoinCount.ToString();
     }
     public void Dia()
     {
         _DiaCount += 1;
-        Debug.Log(_DiaCount);
+        DiaCOunt.text = _DiaCount.ToString();
     }
 
  
@@ -110,6 +123,15 @@ public class MasterCODE : MonoBehaviour
     {
         yield return new WaitForSeconds(10);
         _coinpower = false;
+    }
+    public void ScoreUpdate()
+    {
+        float ddd;
+       ddd = Mathf.Lerp(_ScoreCount,_ScoreCount+_Speedy*5,Time.deltaTime*_Speedy);
+        _ScoreCount = Mathf.FloorToInt(ddd);
+      ScoreCount.text = _ScoreCount.ToString();
+
+
     }
 
 

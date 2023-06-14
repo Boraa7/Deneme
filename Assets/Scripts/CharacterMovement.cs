@@ -24,9 +24,20 @@ public class Character : MonoBehaviour
     public GameObject _Dog;
     public GameObject _DogRarm;
     public GameObject _DogLarm;
+    public GameObject _DogHead;
     public GameObject _ArmorSuit;
     public GameObject _ArmorLarm;
     public GameObject _ArmorRarm;
+    public GameObject _Duck;
+    public GameObject _DuckRarm;
+    public GameObject _DuckLarm;
+    public GameObject _DuckHead;
+    public GameObject _Bear;
+    public GameObject _BearRarm;
+    public GameObject _BearLarm;
+    public GameObject _BearHead;
+    public bool duckskin, bearskin;
+    public bool dogskin = true;
     public Animation run;
    
     void Start()
@@ -113,11 +124,26 @@ public class Character : MonoBehaviour
         if(other.tag == "Armor" && MasterCODE.Instance._Armored == false)
         {
             Master.GetComponent<MasterCODE>()._Armored = true;
-            _Dog.SetActive(false);
-            _DogLarm.SetActive(false);
-            _DogRarm.SetActive(false);
+            if (dogskin==true)
+            {
+                _Dog.SetActive(false);
+                _DogLarm.SetActive(false);
+                _DogRarm.SetActive(false);
 
+            }
+            if (bearskin==true)
+            {
+                _Bear.SetActive(false);
+                _BearLarm.SetActive(false);
+                _BearRarm.SetActive(false);
+            }
+            if (duckskin==true)
+            {
+                _Duck.SetActive(true);
+                _DuckLarm.SetActive(true);
+                _DuckRarm.SetActive(true);
 
+            }
             _ArmorLarm.SetActive(true);
             _ArmorSuit.SetActive(true);
             _ArmorRarm.SetActive(true);
@@ -135,9 +161,25 @@ public class Character : MonoBehaviour
         if(other.tag == "Block" && MasterCODE.Instance._Armored == true)
         {
             Master.GetComponent<MasterCODE>()._Armored = false;
-            _Dog.SetActive(true);
-            _DogRarm.SetActive(true);
-            _DogLarm.SetActive(true);
+            if (dogskin==true)
+            {
+                _Dog.SetActive(true);
+                _DogRarm.SetActive(true);
+                _DogLarm.SetActive(true);
+            }
+            if (bearskin==true)
+            {
+                _Bear.SetActive(true);
+                _BearLarm.SetActive(true);
+                _BearRarm.SetActive(true);
+            }
+            if (duckskin==true)
+            {
+                _Duck.SetActive(true);
+                _DuckLarm.SetActive(true);
+                _DuckRarm.SetActive(true);
+
+            }
 
 
             _ArmorLarm.SetActive(false);
