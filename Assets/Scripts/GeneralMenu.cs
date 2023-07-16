@@ -10,6 +10,7 @@ public class GeneralMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
         StartCoroutine(FreezeTime());
+        Time.timeScale = 1f;
 
     }
     public void Quit()

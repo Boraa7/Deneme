@@ -11,6 +11,8 @@ public class MasterCODE : MonoBehaviour
     public GameObject[] blocks;
     public GameObject coin;
     public GameObject[] background;
+    public GameObject GameOverMenu;
+    public GameObject GameUI;
     Vector3 mid = new Vector3(0, 1, 100);
     Vector3 left = new Vector3(-4, 1, 100);
     Vector3 right = new Vector3(4, 1, 100);
@@ -38,6 +40,7 @@ public class MasterCODE : MonoBehaviour
     public float _ScoreCount = 0;
     public float acceleration = 10f;
     public float _Speedy = 15.0f;
+    public float _Endscore;
     float blockspawncontroller = 20f;
 
     float zaman,zaman1 =0f;
@@ -48,6 +51,12 @@ public class MasterCODE : MonoBehaviour
     private Text DiaCOunt;
     [SerializeField]
     private Text ScoreCount;
+    [SerializeField]
+    private Text GameOverScore;
+    [SerializeField]
+    private Text EndDia;
+    [SerializeField]
+    private Text EndCoin;
 
     void Awake() => Instance = this;
    
@@ -62,6 +71,7 @@ public class MasterCODE : MonoBehaviour
         CoinCount.text = _CoinCount.ToString();
         DiaCOunt.text = _DiaCount.ToString();
         ScoreCount.text = _ScoreCount.ToString();
+        GameOverScore.text = _Endscore.ToString();
     }
 
 
@@ -100,17 +110,21 @@ public class MasterCODE : MonoBehaviour
        
         _CoinCount += 1;
         CoinCount.text = _CoinCount.ToString();
+        EndCoin.text = _CoinCount.ToString();
     }
     public void Dia()
     {
         _DiaCount += 1;
         DiaCOunt.text = _DiaCount.ToString();
+        EndDia.text = _DiaCount.ToString();
     }
 
  
     public void GameOver()
     {
-        Debug.Log("BITTI");
+        Time.timeScale = 0f;
+        GameOverMenu.SetActive(true);
+        GameUI.SetActive(false);
     }
 
     public void CoinPower()
@@ -130,9 +144,12 @@ public class MasterCODE : MonoBehaviour
        ddd = Mathf.Lerp(_ScoreCount,_ScoreCount+_Speedy*5,Time.deltaTime*_Speedy);
         _ScoreCount = Mathf.FloorToInt(ddd);
       ScoreCount.text = _ScoreCount.ToString();
+        _Endscore = _ScoreCount;
+        GameOverScore.text = _Endscore.ToString();
 
 
     }
+   
 
 
 

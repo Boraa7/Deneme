@@ -29,6 +29,21 @@ public class MenuScript : MonoBehaviour
         WaitForSeconds(3);
         MenuScript._Paused = false;
     }
+    public void Retry()
+    {
+        SceneManager.LoadScene("Game");
+        Time.timeScale = 1f;
+    }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("StartMenu");
+        Time.timeScale = 1f;
+    }
+    public void Shop()
+    {
+        SceneManager.LoadScene("Shop");
+        Time.timeScale = 1f;
+    }
 
 
 }
